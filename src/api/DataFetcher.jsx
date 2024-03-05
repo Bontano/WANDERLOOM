@@ -44,21 +44,41 @@ export const register = async (userData, setResponseData) => {
     console.error("Erreur lors de l'inscription :", error.response ? error.response.data : error.message);
   }
 };
-export const createitinary = async (setDataResponse) => {
-  await axios
+// export const createitinary = async (setDataResponse) => {
+//   await axios
 
-    .post("http://localhost:8000/api/itinary/publication", {
+//     .post("http://localhost:8000/api/itinary/publication", {
+//       headers: {
+//         "Content- Type": "application/ld+json",
+//       },
+//     })
+//     .then((response) => {
+//       console.log(response);
+//       setDataResponse(response.data);
+//     })
+//     .catch((error) => {
+//       console.error("Erreur lors de la requête :", error);
+//     });
+// };
+
+
+export const createitinary = async (city, dates, setDataResponse) => {
+  try {
+    const response = await axios.post("http://localhost:8000/api/itinary/publication", {
+      city: city,
+      startDate: dates.startDate,
+      endDate: dates.endDate,
+    }, {
       headers: {
-        "Content-Type": "application/ld+json",
+        "Content-Type": "application/ld+json", // Correct the typo here
       },
-    })
-    .then((response) => {
-      console.log(response);
-      setDataResponse(response.data);
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la requête :", error);
     });
+    console.log(response);
+    setDataResponse(response.data);
+  } catch (error) {
+    console.error("Erreur lors de la requête :", error);
+  }
 };
+
 
 export default DataFetcher;

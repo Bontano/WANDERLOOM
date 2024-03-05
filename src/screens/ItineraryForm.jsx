@@ -47,22 +47,15 @@ function ItineraryForm() {
       </List>
     );
   };
-  
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Il semble que vous ne passiez pas formData à createitinary, donc cette partie peut être omise si createitinary n'utilise pas ces données
-    // const formData = {
-    // city: city,
-    //startDate: dates.startDate,
-    // endDate: dates.endDate,
-    // };
-    console.log(`Fetching itinerary...`);
-
     // Appel de createitinary avec setDataResponse comme callback pour mettre à jour l'état
     await createitinary(setDataResponse); // Ici, vous devez vous assurer que createitinary est défini pour accepter une telle fonction
     setOpenDialog(true);
   };
+
 
   return (
     <>
